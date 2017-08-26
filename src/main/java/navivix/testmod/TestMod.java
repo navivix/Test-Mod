@@ -1,9 +1,12 @@
 package navivix.testmod;
 
-import net.minecraft.init.Blocks;
+import navivix.testmod.proxies.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = TestMod.MODID, name = TestMod.NAME, version = TestMod.VERSION)
 public class TestMod
@@ -11,11 +14,29 @@ public class TestMod
     public static final String MODID = "testmod";
     public static final String NAME = "Test Mod";
     public static final String VERSION = "@VERSION@";
-    
+
+    @Mod.Instance
+    public static TestMod instance;
+
+    @SidedProxy(clientSide = "navivix.testmod.proxies.ClientProxy", serverSide = "navivix.testmod.proxies.CommonProxy")
+
+    public static CommonProxy proxy;
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        proxy.preInit(event);
+    }
+
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        // some example code
-        System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getUnlocalizedName());
+        proxy.init(event);
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        proxy.postInit(event);
     }
 }
