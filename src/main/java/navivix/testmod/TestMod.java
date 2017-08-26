@@ -1,6 +1,8 @@
 package navivix.testmod;
 
 import navivix.testmod.proxies.CommonProxy;
+import navivix.testmod.tabs.CreativeTabTest;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -22,10 +24,13 @@ public class TestMod
 
     public static CommonProxy proxy;
 
+    public static CreativeTabTest tabTest;
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         proxy.preInit(event);
+        tabTest = new CreativeTabTest(CreativeTabs.getNextID(), "tab_test");
     }
 
     @EventHandler
