@@ -32,7 +32,6 @@ public class TestMod
     {
         proxy.preInit(event);
         tabTest = new CreativeTabTest(CreativeTabs.getNextID(), "tab_test");
-        ItemController.preInit();
     }
 
     @EventHandler
