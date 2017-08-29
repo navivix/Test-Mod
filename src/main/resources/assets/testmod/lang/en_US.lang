@@ -2,3 +2,6 @@
 
 #Creative Tab
 itemGroup.tab_test=Test Mod Tab
+
+#Items
+item.test_item.name=Test Item

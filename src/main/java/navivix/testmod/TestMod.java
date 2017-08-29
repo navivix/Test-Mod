@@ -1,5 +1,6 @@
 package navivix.testmod;
 
+import navivix.testmod.items.ItemController;
 import navivix.testmod.proxies.CommonProxy;
 import navivix.testmod.tabs.CreativeTabTest;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,6 +32,7 @@ public class TestMod
     {
         proxy.preInit(event);
         tabTest = new CreativeTabTest(CreativeTabs.getNextID(), "tab_test");
+        ItemController.preInit();
     }
 
     @EventHandler
