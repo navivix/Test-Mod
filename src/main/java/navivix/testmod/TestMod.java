@@ -30,8 +30,8 @@ public class TestMod
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        proxy.preInit(event);
         tabTest = new CreativeTabTest(CreativeTabs.getNextID(), "tab_test");
+        proxy.preInit(event);
     }
 
     @EventHandler
