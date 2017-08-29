@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemController
@@ -13,14 +14,15 @@ public class ItemController
 
     public static void preInit()
     {
-        testItem = new Item().setUnlocalizedName("test_item").setCreativeTab(TestMod.tabTest);
+        testItem = new Item().setUnlocalizedName("test_item").setCreativeTab(TestMod.tabTest).setRegistryName("test_item");
 
         registerItems();
     }
 
     public static void registerItems()
     {
-        GameRegistry.register(testItem, new ResourceLocation(TestMod.MODID, "test_item"));
+        //GameRegistry.register(testItem, new ResourceLocation(TestMod.MODID, "test_item"));
+        GameRegistry.register(testItem);
     }
 
     public static void registerRenders()
@@ -30,6 +32,6 @@ public class ItemController
 
     public static void registerRender(Item item)
     {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(TestMod.MODID + ":" + item.getUnlocalizedName().substring(5)));
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 }
