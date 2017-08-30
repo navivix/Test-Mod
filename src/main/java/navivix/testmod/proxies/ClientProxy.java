@@ -11,6 +11,8 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
+
+        ItemController.registerRenders(); // <---- correct
     }
 
     @Override
@@ -18,7 +20,7 @@ public class ClientProxy extends CommonProxy
     {
         super.init(event);
 
-        ItemController.registerRenders();
+        //ItemController.registerRenders(); <---- incorrect
     }
 
     @Override
