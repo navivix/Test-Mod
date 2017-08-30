@@ -1,15 +1,19 @@
 package navivix.testmod;
 
-import navivix.testmod.items.ItemController;
-import navivix.testmod.proxies.CommonProxy;
-import navivix.testmod.tabs.CreativeTabTest;
+
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemMap;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid = TestMod.MODID, name = TestMod.NAME, version = TestMod.VERSION)
 public class TestMod
@@ -21,28 +25,31 @@ public class TestMod
     @Mod.Instance
     public static TestMod instance;
 
-    @SidedProxy(clientSide = "navivix.testmod.proxies.ClientProxy", serverSide = "navivix.testmod.proxies.CommonProxy")
-
-    public static CommonProxy proxy;
-
-    public static CreativeTabTest tabTest;
+    public static final CreativeTabs TAB = new CreativeTabs("test_tab")
+    {
+        @SideOnly(Side.CLIENT)
+        @Override
+        public Item getTabIconItem()
+        {
+            return Items.FILLED_MAP;
+        }
+    };
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        tabTest = new CreativeTabTest(CreativeTabs.getNextID(), "tab_test");
-        proxy.preInit(event);
+
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        proxy.init(event);
+
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        proxy.postInit(event);
+
     }
 }
