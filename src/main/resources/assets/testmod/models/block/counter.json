@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "testmod:blocks/counter/side",
+    "up": "testmod:blocks/counter/side",
+    "down": "testmod:blocks/counter/side",
+    "north": "testmod:blocks/counter/counter",
+    "south": "testmod:blocks/counter/side",
+    "west": "testmod:blocks/counter/side",
+    "east": "testmod:blocks/counter/side"
+  }
+}
