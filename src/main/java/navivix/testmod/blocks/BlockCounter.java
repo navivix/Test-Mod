@@ -57,6 +57,13 @@ public class BlockCounter extends ModBlock
         return new TECounter();
     }
 
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public boolean hasTileEntity() {
+        return true;
+    }
+
     private TECounter getTE(World world, BlockPos pos)
     {
         return (TECounter) world.getTileEntity(pos);

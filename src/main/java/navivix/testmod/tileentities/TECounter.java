@@ -22,17 +22,15 @@ public class TECounter extends TileEntity
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
-        super.writeToNBT(compound);
-        compound.setInteger("counter", counter);
-        return compound;
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+
+        counter = compound.getInteger("counter");
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
-    {
-        super.readFromNBT(compound);
-        counter = compound.getInteger("counter");
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setInteger("counter", counter);
+        return super.writeToNBT(compound);
     }
 }
