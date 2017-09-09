@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockCounter extends ModBlock
+public class BlockCounter extends ModBContainer
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
@@ -35,11 +35,12 @@ public class BlockCounter extends ModBlock
             if(side == state.getValue(FACING))
             {
                 int counter;
+                TECounter te = (TECounter) worldIn.getTileEntity(pos);
 
                 if(hitY > 0.5f)
-                    counter = getTE(worldIn, pos).increment();
+                    counter = te.increment();
                 else
-                    counter = getTE(worldIn, pos).decrement();
+                    counter = te.decrement();
 
                 playerIn.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Counter: " + counter));
             }
@@ -48,40 +49,33 @@ public class BlockCounter extends ModBlock
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
         return new TECounter();
     }
 
-
     @Override
     @SuppressWarnings("deprecation")
-    public boolean hasTileEntity() {
-        return true;
-    }
-
-    private TECounter getTE(World world, BlockPos pos)
+    public IBlockState getStateFromMeta(int meta)
     {
-        return (TECounter) world.getTileEntity(pos);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return state.getValue(FACING).getIndex();
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState()
+    {
         return new BlockStateContainer(this, FACING);
     }
 }

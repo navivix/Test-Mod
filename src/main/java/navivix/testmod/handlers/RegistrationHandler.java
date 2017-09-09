@@ -3,6 +3,7 @@ package navivix.testmod.handlers;
 import navivix.testmod.init.MBlocks;
 import navivix.testmod.init.MItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

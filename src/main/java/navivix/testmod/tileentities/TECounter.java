@@ -21,6 +21,8 @@ public class TECounter extends TileEntity
         return counter;
     }
 
+
+
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
