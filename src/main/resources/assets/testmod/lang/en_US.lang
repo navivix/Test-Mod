@@ -9,3 +9,8 @@ item.iphone.name=IPhone 7
 #Blocks
 tile.cobblex.name=CobbleX
 tile.counter.name=Counter
+tile.blinker.name=Blinker
+tile.safe.name=Safe
+
+#Inventory
+container.tesafe=Safe
